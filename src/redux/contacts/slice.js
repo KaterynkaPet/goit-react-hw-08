@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact } from "./contactsOps";
-import { selectNameFilter } from "./filtersSlice";
+import { fetchContacts, addContact, deleteContact } from "../contacts/operations";
+import { selectNameFilter } from "../filters/slice";
 
 
 const formatPhoneNumber = (value) => {
