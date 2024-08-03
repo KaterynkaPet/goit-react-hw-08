@@ -4,4 +4,3 @@ export const selectFilteredContacts = (state) => {
   const { name } = state.filters;
   return items.filter(contact => contact.name.toLowerCase().includes(name.toLowerCase()));
 };
-export default selectAllContacts;

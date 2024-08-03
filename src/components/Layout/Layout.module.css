@@ -1,0 +1,32 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.header a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+main {
+    flex: 1;
+    padding: 1rem;
+}

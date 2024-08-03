@@ -4,20 +4,21 @@ import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
 import css from './RegistrationForm.module.css'; 
 
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .min(3, 'Too short!')
+    .max(30, 'Too long. Max 30 symbols')
+    .required('This field is required'),
+  email: Yup.string()
+    .email('must be a valid email')
+    .required('This field is required'),
+  password: Yup.string()
+    .min(7, 'Too short! Min 7 symbols')
+    .required('This field is required'),
+});
+
 const RegistrationForm = () => {
   const dispatch = useDispatch();
-
-  const initialValues = {
-    name: '',
-    email: '',
-    password: '',
-  };
-
-  const validationSchema = Yup.object({
-    name: Yup.string().required('Required'),
-    email: Yup.string().email('Invalid email address').required('Required'),
-    password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required'),
-  });
 
   const handleSubmit = (values, { resetForm }) => {
     dispatch(register(values));
@@ -26,27 +27,54 @@ const RegistrationForm = () => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{
+        name: '',
+        email: '',
+        password: '',
+      }}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      <Form className={css.form}>
-        <div className={css.formGroup}>
-          <label htmlFor="name">Name</label>
-          <Field type="text" name="name" id="name" />
-          <ErrorMessage name="name" component="div" />
+      <Form className={css.wrapper}>
+        <div className={css.fileld}>
+          <label className={css.label} htmlFor="name">
+            Name
+          </label>
+          <Field
+            type="text"
+            name="name"
+            placeholder="Your name"
+            id="name"
+          />
+          <ErrorMessage className={css.error} name="name" component="span" />
         </div>
-        <div className={css.formGroup}>
-          <label htmlFor="email">Email</label>
-          <Field type="email" name="email" id="email" />
-          <ErrorMessage name="email" component="div" />
+        <div className={css.fileld}>
+          <label className={css.label} htmlFor="email">
+            Email
+          </label>
+          <Field
+            type="email"
+            name="email"
+            placeholder="Your email"
+            id="email"
+          />
+          <ErrorMessage className={css.error} name="email" component="span" />
         </div>
-        <div className={css.formGroup}>
-          <label htmlFor="password">Password</label>
-          <Field type="password" name="password" id="password" />
-          <ErrorMessage name="password" component="div" />
+        <div className={css.fileld}>
+          <label className={css.label} htmlFor="password">
+            Password
+          </label>
+          <Field
+            type="password"
+            name="password"
+            placeholder="password"
+            id="password"
+          />
+          <ErrorMessage className={css.error} name="password" component="span" />
         </div>
-        <button type="submit">Register</button>
+        <button className={css.btn} type="submit">
+          Register
+        </button>
       </Form>
     </Formik>
   );

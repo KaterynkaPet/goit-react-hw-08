@@ -13,12 +13,14 @@ const SearchBox = () => {
 
   return (
     <div className={css.searchForm}>
-      <input
-        type='text'
-        placeholder='Search...'
-        value={filter}
-        onChange={handleChange}
-      />
+      <label className={css.label}>
+        <input
+          type='text'
+          placeholder='Search...'
+          value={filter}
+          onChange={handleChange}
+        />
+      </label>
     </div>
   );
 };

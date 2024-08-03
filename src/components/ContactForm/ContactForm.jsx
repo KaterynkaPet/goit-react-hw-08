@@ -1,14 +1,25 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from '../../redux/contacts/selectors';
+import { selectAllContacts } from '../../redux/contacts/selectors';
 import { addContact } from '../../redux/contacts/operations';
 import css from './ContactForm.module.css';
 
+const phoneSchema = '[0-9]{3}-[0-9]{2}-[0-9]{2}';
+const contactsSchema = Yup.object({
+  name: Yup.string()
+    .min(3, 'Too short!')
+    .max(30, 'Too long. Max 30 symbols')
+    .required('This field is required'),
+  number: Yup.string()
+    .matches(phoneSchema, 'Phone number is not valid')
+    .required('This field is required'),
+});
+
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const contacts = useSelector(selectAllContacts);
 
   const [formattedNumber, setFormattedNumber] = useState('');
 
@@ -16,17 +27,6 @@ const ContactForm = () => {
     name: '',
     number: '',
   };
-
-  const validationSchema = Yup.object({
-    name: Yup.string()
-      .required('Required')
-      .min(3, 'Name must be at least 3 characters')
-      .max(50, 'Name must be less than 50 characters'),
-    number: Yup.string()
-      .required('Required')
-      .min(3, 'Name must be at least 3 characters')
-      .max(50, 'Name must be less than 50 characters'),
-  });
 
   const formatPhoneNumber = (value) => {
     const phoneNumber = value.replace(/[^\d]/g, '');
@@ -61,22 +61,34 @@ const ContactForm = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={validationSchema}
+      validationSchema={contactsSchema}
     >
       {({ setFieldValue }) => (
-        <Form className={css.form}>
-          <div className={css.formGroup}>
-            <label htmlFor='name'>Name</label>
-            <Field className={css.input} type='text' name='name' id='name' />
+        <Form className={css.wrapper}>
+          <div className={css.field}>
+            <label className={css.label} htmlFor='name'>
+              Name
+            </label>
+            <Field
+              className={css.input}
+              type='text'
+              name='name'
+              id='name'
+              placeholder='Your name'
+            />
             <ErrorMessage className={css.error} name='name' component='div' />
           </div>
 
-          <div className={css.formGroup}>
-            <label htmlFor='number'>Number</label>
+          <div className={css.field}>
+            <label className={css.label} htmlFor='number'>
+              Number
+            </label>
             <Field
               className={css.input}
               type='text'
               name='number'
+              id='number'
+              placeholder='xxx-xx-xx'
               value={formattedNumber}
               onChange={(event) => handleChange(event, setFieldValue)}
             />

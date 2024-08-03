@@ -10,7 +10,7 @@ const Contact = ({ contact }) => {
   };
 
   return (
-    <li className={css.form} key={contact.id}>
+    <div className={css.form} key={contact.id}>
       <ul className={css.user}>
         <li className={css.userList}>
           <img src='/user.svg' alt='svg icon' /> {contact.name}
@@ -20,7 +20,7 @@ const Contact = ({ contact }) => {
         </li>
       </ul>
       <button className={css.btn} onClick={handleDelete}>Delete</button>
-    </li>
+    </div>
   );
 };
 
