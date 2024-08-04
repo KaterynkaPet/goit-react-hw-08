@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react'; 
 import Layout from './Layout/Layout';
 import { refreshUser } from '../redux/auth/operations';
 import { selectIsRefreshing } from '../redux/auth/selectors';
-import RestrictedRoute from './RestrictedRoute/RestrictedRoute';
-import PrivateRoute from './PrivateRoute/PrivateRoute';
+import RestrictedRoute from './RestrictedRoute';
+import PrivateRoute from './PrivateRoute';
+import Loader from './Loader/Loader';
+import ErrorMessage from './ErrorMessage/ErrorMessage';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegistrationPage = lazy(() => import('../pages/RegistrationPage/RegistrationPage'));
@@ -14,26 +16,31 @@ const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
+  const { isRefreshing } = useSelector(selectIsRefreshing);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    dispatch(refreshUser());
+    dispatch(refreshUser())
+      .catch(err => setError(err.message));
   }, [dispatch]);
 
   if (isRefreshing) {
-    return <div>Loading...</div>;
+    return <Loader />;
+  }
+
+  if (error) {
+    return <ErrorMessage message={error} />;
   }
 
   return (
     <Layout>
-      <Suspense fallback={<div>Loading page...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
             path="/register"
             element={
-              <RestrictedRoute
-                component={<RegistrationPage />}
+              <RestrictedRoute component={<RegistrationPage />}
                 redirectTo="/"
               />
             }
@@ -41,8 +48,7 @@ const App = () => {
           <Route
             path="/login"
             element={
-              <RestrictedRoute
-                component={<LoginPage />}
+              <RestrictedRoute component={<LoginPage />}
                 redirectTo="/contacts"
               />
             }
@@ -50,9 +56,7 @@ const App = () => {
           <Route
             path="/contacts"
             element={
-              <PrivateRoute>
-                <ContactsPage />
-              </PrivateRoute>
+              <PrivateRoute component={<ContactsPage />} />
             }
           />
         </Routes>

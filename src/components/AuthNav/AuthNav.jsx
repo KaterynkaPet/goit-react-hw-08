@@ -3,16 +3,16 @@ import clsx from 'clsx';
 import css from './AuthNav.module.css';
 
 const getLinkClass = ({ isActive }) => {
-  return clsx(css.link, isActive && css.acitve);
+  return clsx(css.link, isActive && css.active);
 };
 
 const AuthNav = () => {
   return (
     <div>
-      <NavLink className={css.link} to="/register">
+      <NavLink className={getLinkClass} to="/register">
         Register
       </NavLink>
-      <NavLink className={css.link} to="/login">
+      <NavLink className={getLinkClass} to="/login">
         Login
       </NavLink>
     </div>

@@ -14,7 +14,7 @@ const loginSchema = Yup.object().shape({
     .required('This field is required'),
 });
 
-export default function LoginForm() {
+function LoginForm() {
   const dispatch = useDispatch();
   const fieldId = useId();
 
@@ -64,3 +64,5 @@ export default function LoginForm() {
     </Formik>
   );
 }
+
+export default LoginForm;
