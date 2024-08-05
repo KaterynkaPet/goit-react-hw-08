@@ -11,7 +11,6 @@ import css from './ContactsPage.module.css';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectAllContacts);
   const isLoading = useSelector(selectLoading);
   const isError = useSelector(selectError);
 
@@ -26,7 +25,7 @@ const ContactsPage = () => {
       <ContactForm />
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      <ContactList contacts={contacts} />
+      <ContactList />
     </div>
   );
 };

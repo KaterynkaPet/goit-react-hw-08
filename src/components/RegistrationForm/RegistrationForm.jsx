@@ -36,7 +36,7 @@ const RegistrationForm = () => {
       validationSchema={validationSchema}
     >
       <Form className={css.wrapper}>
-        <div className={css.fileld}>
+        <div className={`${css.field} ${css.name}`}>
           <label className={css.label} htmlFor="name">
             Name
           </label>
@@ -48,7 +48,7 @@ const RegistrationForm = () => {
           />
           <ErrorMessage className={css.error} name="name" component="span" />
         </div>
-        <div className={css.fileld}>
+        <div className={css.field}>
           <label className={css.label} htmlFor="email">
             Email
           </label>
@@ -60,7 +60,7 @@ const RegistrationForm = () => {
           />
           <ErrorMessage className={css.error} name="email" component="span" />
         </div>
-        <div className={css.fileld}>
+        <div className={css.field}>
           <label className={css.label} htmlFor="password">
             Password
           </label>

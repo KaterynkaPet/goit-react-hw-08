@@ -1,0 +1,21 @@
+.navigation {
+    display: flex;
+    gap: 10px;
+    font-size: large;
+}
+
+.link {
+    text-decoration: none;
+    color: #007bff;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.active {
+    font-weight: bold;
+    color: #0056b3;
+}

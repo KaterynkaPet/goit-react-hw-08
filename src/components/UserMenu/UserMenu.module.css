@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.username,
+.name {
+    color: #0a5703;
+    font-size: large;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0a5703;
+}
