@@ -9,7 +9,7 @@ function Loader() {
         height="50"
         width="50"
         color="grey"
-        strokeColor="blue"
+        strokeColor="#ff00aa"
         strokeWidth="5"
         animationDuration="0.75"
         ariaLabel="rotating-lines-loading"
