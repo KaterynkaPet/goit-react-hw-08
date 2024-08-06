@@ -21,10 +21,10 @@ const ContactsPage = () => {
 
   return (
     <div className={css.wrapper}>
-      <SearchBox />
-      <ContactForm />
       {isLoading && <Loader />}
+      <SearchBox />
       {isError && <ErrorMessage />}
+      <ContactForm />
       <ContactList />
     </div>
   );
