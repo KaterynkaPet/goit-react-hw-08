@@ -40,7 +40,7 @@ const App = () => {
           <Route
             path="/register"
             element={
-              <RestrictedRoute redirectTo="/">
+              <RestrictedRoute redirectTo="/contacts">
                 <RegistrationPage />
               </RestrictedRoute>
             }
