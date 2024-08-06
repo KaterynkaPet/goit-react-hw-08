@@ -3,10 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    max-width: 400px;
-    margin: 0 auto;
-    background-color: #f8f8f8;
+    padding: 40px;
+    max-width: 600px;
+    margin: auto;
+    background-color: #fae1f2;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -18,9 +18,9 @@
 
 .label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     font-weight: bold;
-    color: #333;
+    color: #0a5703;
 }
 
 input[type="text"],
@@ -46,7 +46,7 @@ input[type="password"] {
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
-    background-color: #007bff;
+    background-color: #ff00aa;
     border: none;
     border-radius: 4px;
     cursor: pointer;

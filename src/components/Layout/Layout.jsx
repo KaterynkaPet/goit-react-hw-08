@@ -5,9 +5,7 @@ const Layout = ({ children }) => {
   return (
     <div className={css.layout}>
       <AppBar />
-      <main>
-        {children}
-      </main>
+      {children}
     </div>
   );
 };

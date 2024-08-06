@@ -1,6 +1,7 @@
 body {
-  background-color: #f9eae9;
-  color: #333;
+  background-image: url('https://images.unsplash.com/photo-1458929526027-052f5d6a3c5e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MDkxMjR8MHwxfHNlYXJjaHw0MXx8Zmxvd2Vyc3xlbnwwfHx8fDE3MjI4OTg3ODR8MA&ixlib=rb-4.0.3&q=80&w=1080');
+  background-size: cover;
+  color: #0a5703;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -8,23 +9,40 @@ body {
 
 
 .header {
-  background-color: #fbe5e6;
+  background-color: #f5b6b7;
   padding: 1rem;
 }
 
-button {
-  background-color: #f7c6c7;
-  border: none;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 8px;
 }
 
-input,
-select,
-textarea {
-  border: 1px solid #f0b2b4;
+.error {
+  display: block;
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
 
-  border-radius: 5px;
-  padding: 0.5rem;
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0a5703;
 }
